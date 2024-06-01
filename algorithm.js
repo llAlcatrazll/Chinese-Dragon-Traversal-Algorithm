@@ -29,6 +29,7 @@ for (let i = 0; i < cipherLength; i++) {
     }
   }
 }
+console.log("Snake Traversal Algorithm");
 console.log("CipherKey Length = " + cipherLength);
 console.log("Original Text = " + toDecode);
 
@@ -78,10 +79,103 @@ console.log(testarr);
 /*
 LETS START REARRANGING
 */
+// CURRENT FINAL REARRANGED ARRAY   ==  testarr
 const rearArr = [];
 const rearLength = cipherLength;
-const vowels = "aeiouAEIOU";
-const consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+const tempArr = [];
+//
+let result = "";
+let row = 0;
+let col = 0;
+const numRows = testarr.length;
+const numCols = testarr[0].length;
+
+while (true) {
+  // Traverse downwards until the bottom
+  while (row < numRows) {
+    result += testarr[row][col];
+    row++;
+  }
+  row--;
+
+  // Traverse rightwards until the rightmost
+  col++;
+  if (col >= numCols) break; // Break if all columns have been traversed
+  result += testarr[row][col];
+
+  // Traverse upwards by one index
+  row--;
+
+  if (row < 0) break; // Break if all rows have been traversed
+
+  // Traverse leftwards until the leftmost not traversed
+  while (col > 0) {
+    col--;
+    result += testarr[row][col];
+  }
+
+  // Traverse upwards until the topmost not traversed
+  row--;
+
+  if (row < 0) break; // Break if all rows have been traversed
+
+  // Traverse rightwards by one index
+  col++;
+}
+
+console.log(result); // Output: "PIteoclly00eteoddtwepaoeempdcbna"
+// let down = testarr.length;
+// let right = cipherLength;
+// let up = testarr.length - 1;
+// let singleup = 1;
+// let singleright = 1;
+// let lastindex = 0;
+// console.log(down);
+// console.log(right);
+// console.log(up);
+// for (let x = 0; x < down; x++) {
+//   tempArr.push(testarr[x][0]);
+//   lastindex = testarr[x][0];
+// }
+// console.log(lastindex);
+// rearArr.push(tempArr);
+// //
+// console.log("tempArr = " + tempArr);
+// console.log("rearArr = " + rearArr);
+// tempArr.length = 0;
+// // reset
+// console.log("tempArr = " + tempArr);
+//
+//
+//
+//
+// let numRows = testarr.length;
+// let numCols = testarr[0].length;
+// let result = "";
+
+// Traverse the array diagonally
+// for (let i = 0; i < numRows + numCols - 1; i++) {
+//   if (i % 2 === 0) {
+//     // Moving upwards
+//     for (let j = Math.min(i, numRows - 1); j >= 0; j--) {
+//       let col = i - j;
+//       if (col < numCols) {
+//         result += testarr[j][col];
+//       }
+//     }
+//   } else {
+//     // Moving downwards
+//     for (let j = Math.min(i, numCols - 1); j >= 0; j--) {
+//       let row = i - j;
+//       if (row < numRows) {
+//         result += testarr[row][j];
+//       }
+//     }
+//   }
+// }
+// console.log(result); // Output: PIteoclly00eteoddtwepaoeempdcbna
+// const vowels = "aeiouAEIOU";
+// const consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
 // const testing = "1e";
 // Custom array length
 // let vowelsorting = 0;
@@ -103,8 +197,26 @@ const consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
 // }
 //
 //
-console.log(testarr[0]);
-console.log(testarr.length);
-console.log(testarr);
+// console.log(testarr[0]);
+// console.log(testarr.length);
+// console.log(testarr);
+// const ignore = ",";
+// // LETS START THE SNAKE TRAVERSAL
+// for (let y = 0; y < cipherLength; y++) {
+//   if (y % 2 === 0) {
+//     // Even columns: top to bottom
+//     for (let x = 0; x < testarr.length; x++) {
+//       tempArr.push(testarr[x][y]);
+//     }
+//   } else {
+//     // Odd columns: bottom to top
+//     for (let x = testarr.length - 1; x >= 0; x--) {
+//       tempArr.push(testarr[x][y]);
+//     }
+//   }
+//   rearArr.push(tempArr);
+//   tempArr = [];
+// }
+// tempArr.length = 0;
 
 // TAKE THE FIRST ARRAY GROUP FOR ASSIGNING VALUES
