@@ -1,6 +1,7 @@
-const cipherKey = "Pepa";
+const cipherKey = "Pepapig";
 const keyPushArr = cipherKey;
-const toDecode = "I want to be decoded completely";
+// const toDecode = "I want to be decoded completely";
+const toDecode = "Let's try anothing to de encoded and decodeders";
 const Decoded = "";
 const cipherLength = cipherKey.length;
 const decodeLenth = toDecode.length;
@@ -80,50 +81,81 @@ console.log(testarr);
 LETS START REARRANGING
 */
 // CURRENT FINAL REARRANGED ARRAY   ==  testarr
-const rearArr = [];
-const rearLength = cipherLength;
+// const arr = [
+//   ["P", "e", "p", "a"],
+//   ["I", "w", "a", "n"],
+//   ["t", "t", "o", "b"],
+//   ["e", "d", "e", "c"],
+//   ["o", "d", "e", "d"],
+//   ["c", "o", "m", "p"],
+//   ["l", "e", "t", "e"],
+//   ["l", "y", "0", "0"],
+// ];
+const arr = testarr;
+const key = "four";
+let leftmostcol = 0;
+let rightmostcol = arr[0].length;
+let bottommostrow = arr.length - 1;
+let topmostrow = 0;
 const tempArr = [];
-//
-let result = "";
-let row = 0;
-let col = 0;
-const numRows = testarr.length;
-const numCols = testarr[0].length;
+const finalArr = [];
 
-while (true) {
-  // Traverse downwards until the bottom
-  while (row < numRows) {
-    result += testarr[row][col];
-    row++;
+// Traverse the array
+while (leftmostcol < rightmostcol && topmostrow <= bottommostrow) {
+  // Traverse down
+  for (let x = topmostrow; x <= bottommostrow; x++) {
+    tempArr.push(arr[x][leftmostcol]);
   }
-  row--;
+  leftmostcol++;
+  finalArr.push(...tempArr);
+  tempArr.length = 0;
 
-  // Traverse rightwards until the rightmost
-  col++;
-  if (col >= numCols) break; // Break if all columns have been traversed
-  result += testarr[row][col];
+  if (!(leftmostcol < rightmostcol && topmostrow <= bottommostrow)) break;
 
-  // Traverse upwards by one index
-  row--;
-
-  if (row < 0) break; // Break if all rows have been traversed
-
-  // Traverse leftwards until the leftmost not traversed
-  while (col > 0) {
-    col--;
-    result += testarr[row][col];
+  // Traverse right
+  if (leftmostcol < rightmostcol) {
+    for (let x = leftmostcol; x < rightmostcol; x++) {
+      tempArr.push(arr[bottommostrow][x]);
+    }
+    finalArr.push(...tempArr);
+    tempArr.length = 0;
+    bottommostrow--;
+  } else {
+    // Traverse up
+    for (let x = bottommostrow; x >= topmostrow; x--) {
+      tempArr.push(arr[x][leftmostcol - 1]);
+    }
+    leftmostcol++; // Increment for next cycle
+    finalArr.push(...tempArr);
+    tempArr.length = 0;
+    continue;
   }
 
-  // Traverse upwards until the topmost not traversed
-  row--;
+  if (!(leftmostcol < rightmostcol && topmostrow <= bottommostrow)) break;
 
-  if (row < 0) break; // Break if all rows have been traversed
+  // Traverse left
+  for (let x = rightmostcol - 1; x >= leftmostcol; x--) {
+    tempArr.push(arr[bottommostrow][x]);
+  }
+  finalArr.push(...tempArr);
+  tempArr.length = 0;
+  bottommostrow--;
 
-  // Traverse rightwards by one index
-  col++;
+  if (!(leftmostcol < rightmostcol && topmostrow <= bottommostrow)) break;
+
+  // Traverse up
+  for (let x = bottommostrow; x >= topmostrow; x--) {
+    tempArr.push(arr[x][leftmostcol]);
+  }
+  leftmostcol++;
+  finalArr.push(...tempArr);
+  tempArr.length = 0;
 }
 
-console.log(result); // Output: "PIteoclly00eteoddtwepaoeempdcbna"
+// Combine the final array into one string
+const resultString = finalArr.join("");
+console.log("Final traversal result:", resultString);
+
 // let down = testarr.length;
 // let right = cipherLength;
 // let up = testarr.length - 1;
