@@ -1,7 +1,7 @@
-const cipherKey = "Pepapig";
+const cipherKey = "pepapi";
 const keyPushArr = cipherKey;
-// const toDecode = "I want to be decoded completely";
-const toDecode = "Let's try anothing to de encoded and decodeders";
+const toDecode = "I want to be decoded completely wahahaha";
+// const toDecode = "Let's try anothing to de encoded and decodeders";
 const Decoded = "";
 const cipherLength = cipherKey.length;
 const decodeLenth = toDecode.length;
@@ -30,7 +30,7 @@ for (let i = 0; i < cipherLength; i++) {
     }
   }
 }
-console.log("Snake Traversal Algorithm");
+console.log("\n-----  Chinese Dragon Traversal Algorithm  ----\n");
 console.log("CipherKey Length = " + cipherLength);
 console.log("Original Text = " + toDecode);
 
@@ -75,6 +75,7 @@ testarr.push(emptyarr);
 // console.log(emptyarr.length);
 // console.log("Whats left in empty array = [ " + emptyarr + " ]");
 
+console.log("RAW ARRAY = ");
 console.log(testarr);
 
 /*
@@ -91,7 +92,9 @@ LETS START REARRANGING
 //   ["l", "e", "t", "e"],
 //   ["l", "y", "0", "0"],
 // ];
-const arr = testarr;
+// console.log(arr);
+const arr = testarr; //Original array
+const arr2 = testarr;
 const key = "four";
 let leftmostcol = 0;
 let rightmostcol = arr[0].length;
@@ -99,23 +102,26 @@ let bottommostrow = arr.length - 1;
 let topmostrow = 0;
 const tempArr = [];
 const finalArr = [];
-
+let traversal = 0;
 // Traverse the array
 while (leftmostcol < rightmostcol && topmostrow <= bottommostrow) {
   // Traverse down
   for (let x = topmostrow; x <= bottommostrow; x++) {
     tempArr.push(arr[x][leftmostcol]);
+    arr2[x][leftmostcol] = traversal;
+    traversal++;
   }
   leftmostcol++;
   finalArr.push(...tempArr);
   tempArr.length = 0;
-
   if (!(leftmostcol < rightmostcol && topmostrow <= bottommostrow)) break;
 
   // Traverse right
   if (leftmostcol < rightmostcol) {
     for (let x = leftmostcol; x < rightmostcol; x++) {
       tempArr.push(arr[bottommostrow][x]);
+      arr2[bottommostrow][x] = traversal;
+      traversal++;
     }
     finalArr.push(...tempArr);
     tempArr.length = 0;
@@ -124,6 +130,8 @@ while (leftmostcol < rightmostcol && topmostrow <= bottommostrow) {
     // Traverse up
     for (let x = bottommostrow; x >= topmostrow; x--) {
       tempArr.push(arr[x][leftmostcol - 1]);
+      arr2[x][leftmostcol] = traversal;
+      traversal++;
     }
     leftmostcol++; // Increment for next cycle
     finalArr.push(...tempArr);
@@ -136,6 +144,8 @@ while (leftmostcol < rightmostcol && topmostrow <= bottommostrow) {
   // Traverse left
   for (let x = rightmostcol - 1; x >= leftmostcol; x--) {
     tempArr.push(arr[bottommostrow][x]);
+    arr2[bottommostrow][x] = traversal;
+    traversal++;
   }
   finalArr.push(...tempArr);
   tempArr.length = 0;
@@ -146,6 +156,8 @@ while (leftmostcol < rightmostcol && topmostrow <= bottommostrow) {
   // Traverse up
   for (let x = bottommostrow; x >= topmostrow; x--) {
     tempArr.push(arr[x][leftmostcol]);
+    arr2[x][leftmostcol] = traversal;
+    traversal++;
   }
   leftmostcol++;
   finalArr.push(...tempArr);
@@ -155,100 +167,6 @@ while (leftmostcol < rightmostcol && topmostrow <= bottommostrow) {
 // Combine the final array into one string
 const resultString = finalArr.join("");
 console.log("Final traversal result:", resultString);
-
-// let down = testarr.length;
-// let right = cipherLength;
-// let up = testarr.length - 1;
-// let singleup = 1;
-// let singleright = 1;
-// let lastindex = 0;
-// console.log(down);
-// console.log(right);
-// console.log(up);
-// for (let x = 0; x < down; x++) {
-//   tempArr.push(testarr[x][0]);
-//   lastindex = testarr[x][0];
-// }
-// console.log(lastindex);
-// rearArr.push(tempArr);
-// //
-// console.log("tempArr = " + tempArr);
-// console.log("rearArr = " + rearArr);
-// tempArr.length = 0;
-// // reset
-// console.log("tempArr = " + tempArr);
-//
-//
-//
-//
-// let numRows = testarr.length;
-// let numCols = testarr[0].length;
-// let result = "";
-
-// Traverse the array diagonally
-// for (let i = 0; i < numRows + numCols - 1; i++) {
-//   if (i % 2 === 0) {
-//     // Moving upwards
-//     for (let j = Math.min(i, numRows - 1); j >= 0; j--) {
-//       let col = i - j;
-//       if (col < numCols) {
-//         result += testarr[j][col];
-//       }
-//     }
-//   } else {
-//     // Moving downwards
-//     for (let j = Math.min(i, numCols - 1); j >= 0; j--) {
-//       let row = i - j;
-//       if (row < numRows) {
-//         result += testarr[row][j];
-//       }
-//     }
-//   }
-// }
-// console.log(result); // Output: PIteoclly00eteoddtwepaoeempdcbna
-// const vowels = "aeiouAEIOU";
-// const consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
-// const testing = "1e";
-// Custom array length
-// let vowelsorting = 0;
-// // VOWELS FIRTST
-// for (let x = 0; x < rearLength; x++) {
-//   if (vowels.includes(testarr[0][x])) {
-//     // console.log("It works");
-//     testarr[0][x] = vowelsorting;
-//     vowelsorting++;
-//   }
-// }
-// // CONSONANTS NEXT
-// for (let x = 0; x < rearLength; x++) {
-//   if (consonants.includes(testarr[0][x])) {
-//     // console.log("It works");
-//     testarr[0][x] = vowelsorting;
-//     vowelsorting++;
-//   }
-// }
-//
-//
-// console.log(testarr[0]);
-// console.log(testarr.length);
 // console.log(testarr);
-// const ignore = ",";
-// // LETS START THE SNAKE TRAVERSAL
-// for (let y = 0; y < cipherLength; y++) {
-//   if (y % 2 === 0) {
-//     // Even columns: top to bottom
-//     for (let x = 0; x < testarr.length; x++) {
-//       tempArr.push(testarr[x][y]);
-//     }
-//   } else {
-//     // Odd columns: bottom to top
-//     for (let x = testarr.length - 1; x >= 0; x--) {
-//       tempArr.push(testarr[x][y]);
-//     }
-//   }
-//   rearArr.push(tempArr);
-//   tempArr = [];
-// }
-// tempArr.length = 0;
-
-// TAKE THE FIRST ARRAY GROUP FOR ASSIGNING VALUES
+console.log("Array Traversal");
+console.log(arr2); //Display Array 2
